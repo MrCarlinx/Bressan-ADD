@@ -1,0 +1,644 @@
+/* assets/css/custom.css */
+
+/* ═══════════════════════════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════════════════════════ */
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Sombra premium usada em cards */
+.premium-shadow {
+    box-shadow: 0 20px 40px -15px rgba(13, 28, 50, 0.08);
+}
+
+.custom-shadow {
+    box-shadow: 0 10px 30px -10px rgba(13, 28, 50, 0.08);
+}
+
+/* Hover elevação em cards de produto */
+.card-hover {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.card-hover:hover {
+    box-shadow: 0 20px 40px -15px rgba(13, 28, 50, 0.12);
+    transform: translateY(-4px);
+}
+
+/* Input minimalista linha inferior */
+.minimal-input {
+    border: none;
+    border-bottom: 1.5px solid #0d1c32;
+    background: transparent;
+    transition: border-width 0.2s ease;
+}
+.minimal-input:focus {
+    outline: none;
+    border-bottom-width: 3px;
+    box-shadow: none;
+}
+
+/* Bullet de coelho */
+.rabbit-bullet::before {
+    content: 'rabbit';
+    font-family: 'Material Symbols Outlined';
+    font-size: 14px;
+    color: #e9c176;
+    margin-right: 8px;
+}
+
+/* Animação flutuante (landing page) */
+@keyframes float {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+.floating          { animation: float 6s ease-in-out infinite; }
+.floating-delayed  { animation: float 6s ease-in-out 3s infinite; }
+
+/* Card de vidro (glass) */
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(228, 226, 226, 0.5);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   HAMBURGER MENU - Mobile/Tablet
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Botão Hamburger */
+.hamburger-btn {
+    display: none; /* Escondido em desktop */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+    z-index: 60;
+    position: relative;
+}
+
+.hamburger-btn span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #000;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Animação X quando aberto */
+.hamburger-btn.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger-btn.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Overlay do menu mobile */
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 45;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+    opacity: 1;
+}
+
+/* Menu mobile slide-in */
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    max-width: 85vw;
+    height: 100vh;
+    background: #ffffff;
+    z-index: 55;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    padding: 80px 24px 32px;
+}
+
+.mobile-menu.active {
+    transform: translateX(0);
+}
+
+.mobile-menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1b1c1c;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mobile-menu a:hover,
+.mobile-menu a.mobile-active {
+    background: #f5f3f3;
+    color: #000;
+}
+
+.mobile-menu a.mobile-active {
+    border-left: 3px solid #000;
+}
+
+.mobile-menu .mobile-divider {
+    height: 1px;
+    background: #e4e2e2;
+    margin: 16px 0;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE — Smartphones (até 480px)
+   ═══════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+
+    /* ── Header & Nav ──────────────────────────────────────────── */
+    .hamburger-btn {
+        display: flex;
+    }
+
+    .mobile-menu,
+    .mobile-menu-overlay {
+        display: block;
+    }
+
+    .main-site-menu {
+        display: none !important;
+    }
+
+    header > div {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between;
+        padding: 10px 12px !important;
+        gap: 8px !important;
+    }
+
+    /* Logo menor */
+    header .text-2xl {
+        font-size: 18px !important;
+    }
+
+    /* ── Tipografia ────────────────────────────────────────────── */
+    .text-headline-xl,
+    .font-headline-xl {
+        font-size: 26px !important;
+        line-height: 1.15 !important;
+    }
+
+    .text-headline-lg,
+    .font-headline-lg {
+        font-size: 22px !important;
+    }
+
+    .text-headline-md,
+    .font-headline-md {
+        font-size: 18px !important;
+    }
+
+    .text-body-lg,
+    .font-body-lg {
+        font-size: 15px !important;
+    }
+
+    /* ── Hero da Home ──────────────────────────────────────────── */
+    section.h-\[870px\] {
+        height: 520px !important;
+    }
+
+    section.h-\[870px\] .max-w-2xl {
+        max-width: 100% !important;
+    }
+
+    section.h-\[870px\] h1 {
+        font-size: 24px !important;
+        line-height: 1.2 !important;
+    }
+
+    section.h-\[870px\] p {
+        font-size: 14px !important;
+        margin-bottom: 20px !important;
+    }
+
+    section.h-\[870px\] .flex.flex-wrap {
+        flex-direction: column;
+        gap: 10px !important;
+    }
+
+    section.h-\[870px\] .flex.flex-wrap a {
+        padding: 12px 20px !important;
+        font-size: 13px !important;
+        text-align: center;
+        justify-content: center;
+    }
+
+    /* ── Bento Grid Departamentos ──────────────────────────────── */
+    .h-\[800px\] {
+        height: auto !important;
+    }
+
+    .md\:h-\[600px\] {
+        height: auto !important;
+    }
+
+    .grid.grid-cols-1.md\:grid-cols-12 {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    .grid.grid-cols-1.md\:grid-cols-12 > div {
+        height: 200px !important;
+    }
+
+    /* ── Cards de Produto ──────────────────────────────────────── */
+    .card-hover:hover {
+        transform: none;
+    }
+
+    /* ── Seção depoimentos/instagram ───────────────────────────── */
+    .grid.grid-cols-1.lg\:grid-cols-2 {
+        gap: 32px !important;
+    }
+
+    .grid.grid-cols-2.gap-4 img {
+        border-radius: 8px;
+    }
+
+    /* ── CTA Final ─────────────────────────────────────────────── */
+    section.bg-primary-container .flex.flex-col.md\:flex-row {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    section.bg-primary-container h2 {
+        font-size: 22px !important;
+    }
+
+    section.bg-primary-container a {
+        padding: 14px 24px !important;
+        font-size: 13px !important;
+    }
+
+    /* ── Footer ────────────────────────────────────────────────── */
+    footer {
+        padding: 40px 16px !important;
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+
+    footer .flex-wrap {
+        flex-direction: column;
+        gap: 12px !important;
+    }
+
+    /* ── Section Padding ───────────────────────────────────────── */
+    .py-section-padding {
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+    }
+
+    .pt-16 {
+        padding-top: 12px !important;
+    }
+
+    .mb-section-padding {
+        margin-bottom: 40px !important;
+    }
+
+    /* ── Padding horizontal ────────────────────────────────────── */
+    .px-gutter {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    /* ── WhatsApp Widget ───────────────────────────────────────── */
+    #wa-widget {
+        bottom: 16px !important;
+        right: 12px !important;
+    }
+
+    #wa-toggle-btn {
+        width: 52px !important;
+        height: 52px !important;
+    }
+
+    #wa-chat-window {
+        width: calc(100vw - 24px) !important;
+        max-width: 320px;
+    }
+
+    /* ── Carrinho ──────────────────────────────────────────────── */
+    .flex.gap-stack-md.items-center[data-id] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        padding: 12px !important;
+    }
+
+    .flex.gap-stack-md.items-center[data-id] .w-32 {
+        width: 100% !important;
+        height: 180px !important;
+    }
+
+    .flex.gap-stack-md.items-center[data-id] .flex-grow {
+        width: 100%;
+    }
+
+    /* ── Produto Detalhes ──────────────────────────────────────── */
+    .flex.flex-col.md\:flex-row.gap-16 {
+        gap: 24px !important;
+    }
+
+    /* ── Promoções Hero ────────────────────────────────────────── */
+    section.py-24 {
+        padding-top: 48px !important;
+        padding-bottom: 48px !important;
+    }
+
+    .min-w-\[300px\] {
+        min-width: auto !important;
+        width: 100%;
+    }
+
+    /* ── Sobre / Timeline ──────────────────────────────────────── */
+    .relative .absolute.left-1\/2 {
+        display: none;
+    }
+
+    .space-y-24 > div {
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+
+    .space-y-24 > div .hidden.md\:block {
+        display: block !important;
+        text-align: left !important;
+    }
+
+    .space-y-24 > div .w-full.md\:w-\[45\%\] {
+        width: 100% !important;
+    }
+
+    .space-y-24 > div .h-64 {
+        height: 200px !important;
+    }
+
+    /* ── Promoções info box ────────────────────────────────────── */
+    .absolute.-bottom-6.-right-6 {
+        position: relative !important;
+        bottom: auto !important;
+        right: auto !important;
+        margin-top: 16px;
+        max-width: 100% !important;
+    }
+
+    /* ── Login / Cadastro ──────────────────────────────────────── */
+    .max-w-md {
+        padding: 24px !important;
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE — Tablets (481px a 768px)
+   ═══════════════════════════════════════════════════════════════════ */
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    /* ── Header & Nav ──────────────────────────────────────────── */
+    .hamburger-btn {
+        display: flex;
+    }
+
+    .mobile-menu,
+    .mobile-menu-overlay {
+        display: block;
+    }
+
+    .main-site-menu {
+        display: none !important;
+    }
+
+    header > div {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between;
+        padding: 12px 16px !important;
+    }
+
+    /* ── Tipografia ────────────────────────────────────────────── */
+    .text-headline-xl,
+    .font-headline-xl {
+        font-size: 32px !important;
+        line-height: 1.15 !important;
+    }
+
+    .text-headline-lg,
+    .font-headline-lg {
+        font-size: 26px !important;
+    }
+
+    /* ── Hero ──────────────────────────────────────────────────── */
+    section.h-\[870px\] {
+        height: 600px !important;
+    }
+
+    section.h-\[870px\] h1 {
+        font-size: 30px !important;
+    }
+
+    /* ── Bento Grid ────────────────────────────────────────────── */
+    .h-\[800px\] {
+        height: auto !important;
+    }
+
+    .grid.grid-cols-1.md\:grid-cols-12 {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-auto-rows: 250px !important;
+    }
+
+    .grid.grid-cols-1.md\:grid-cols-12 > div:first-child {
+        grid-column: span 2;
+        height: 300px !important;
+    }
+
+    /* ── Section padding ───────────────────────────────────────── */
+    .py-section-padding {
+        padding-top: 56px !important;
+        padding-bottom: 56px !important;
+    }
+
+    /* ── Carrinho ──────────────────────────────────────────────── */
+    .flex.gap-stack-md.items-center[data-id] .w-32 {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    /* ── Footer ────────────────────────────────────────────────── */
+    footer {
+        padding: 48px 20px !important;
+    }
+
+    /* ── Promoções Hero ────────────────────────────────────────── */
+    section.py-24 {
+        padding-top: 56px !important;
+        padding-bottom: 56px !important;
+    }
+
+    .min-w-\[300px\] {
+        min-width: 240px !important;
+    }
+
+    /* ── Timeline ──────────────────────────────────────────────── */
+    .relative .absolute.left-1\/2 {
+        display: none;
+    }
+
+    .space-y-24 > div {
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+
+    .space-y-24 > div .hidden.md\:block {
+        display: block !important;
+        text-align: left !important;
+    }
+
+    .space-y-24 > div .w-full.md\:w-\[45\%\] {
+        width: 100% !important;
+    }
+
+    /* ── WhatsApp Widget ───────────────────────────────────────── */
+    #wa-chat-window {
+        width: 320px !important;
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE — Tablets Landscape / Laptops Pequenos (769px a 1024px)
+   ═══════════════════════════════════════════════════════════════════ */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    /* ── Header & Nav ──────────────────────────────────────────── */
+    .main-site-menu {
+        gap: 16px !important;
+    }
+
+    .main-site-menu a {
+        font-size: 12px !important;
+    }
+
+    /* ── Hero ──────────────────────────────────────────────────── */
+    section.h-\[870px\] {
+        height: 650px !important;
+    }
+
+    section.h-\[870px\] h1 {
+        font-size: 36px !important;
+    }
+
+    /* ── Tipografia ────────────────────────────────────────────── */
+    .text-headline-xl,
+    .font-headline-xl {
+        font-size: 38px !important;
+    }
+
+    /* ── Section padding ───────────────────────────────────────── */
+    .py-section-padding {
+        padding-top: 64px !important;
+        padding-bottom: 64px !important;
+    }
+
+    /* ── Promoções ──────────────────────────────────────────────── */
+    .min-w-\[300px\] {
+        min-width: 260px !important;
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   ACESSIBILIDADE — Foco visível e interações touch
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Foco visível para acessibilidade via teclado */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+}
+
+/* Melhor toque em dispositivos touch */
+@media (hover: none) and (pointer: coarse) {
+    .card-hover:hover {
+        transform: none;
+        box-shadow: 0 10px 30px -10px rgba(13, 28, 50, 0.08);
+    }
+
+    a, button {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
+    }
+}
+
+/* Smooth scroll global */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Imagens responsive por padrão */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Fix overflow horizontal global */
+body {
+    overflow-x: hidden;
+}
+
+/* ── Transição suave para orientação ──────────────────────────── */
+@media (orientation: landscape) and (max-height: 500px) {
+    section.h-\[870px\] {
+        height: 400px !important;
+    }
+
+    .py-section-padding {
+        padding-top: 32px !important;
+        padding-bottom: 32px !important;
+    }
+}
